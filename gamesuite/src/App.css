@@ -16,3 +16,12 @@
   font-weight: bold;
   line-height: 80px;
 }
+
+
+ 
+ /* Board */
+ .board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+ }
