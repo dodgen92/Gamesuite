@@ -23,7 +23,7 @@ export default class Game extends Component {
             }),
             xIsNext: !this.state.xIsNext,
             stepNumber: history.length
-        })
+        });
     }
     render() {
         const history = this.state.history;
@@ -32,10 +32,24 @@ export default class Game extends Component {
         return (
             <div className="game">
                 <div className="game-board">
-                <Board onClick={(i)=>this.handleClick(i)}
-                squares={current.squares} />
+                    <Board onClick={(i)=>this.handleClick(i)}
+                    squares={current.squares} />
                 </div>
             </div>
         )
     }
+}
+
+function calculateWinner(squares){
+    const lines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+    return null;
 }
