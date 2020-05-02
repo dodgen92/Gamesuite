@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import Board from './Board';
 
 export default class Game extends Component {
-    construction(props){
+     constructor(props){
         super(props);
         this.state= {
             xIsNext: true,
             stepNumber: 0,
             history: [
-                {squares: Array(9).full(null)}
+                {squares: Array(9).fill(null)}
             ]
         }
     }
