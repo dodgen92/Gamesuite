@@ -16,6 +16,11 @@ export default class Game extends Component {
         const history = this.state.history.slice(0,this.state.stepNumber+1);
         const current = history[history.length-1];
         const squares = current.squares.slice();
+        const winner = calculateWinner(squares);
+        //stops player from picking a chosen square
+        if(winner || squares[i]){
+            return;
+        }
         squares[i] = this.state.xIsNext?'X':'0';
         this.setState({
             history: history.concat({
@@ -39,7 +44,7 @@ export default class Game extends Component {
         )
     }
 }
-
+//sets win condition
 function calculateWinner(squares){
     const lines = [
         [0, 1, 2],
@@ -51,5 +56,12 @@ function calculateWinner(squares){
         [0, 4, 8],
         [2, 4, 6]
     ];
-    return null;
+    for(let i=0;i<lines.length;i++){
+        const [a,b,c] = lines[i];
+        if(squares[a] && squares[a] === squares[b] && squares[b] === squares[c]){
+            return squares [a];
+        }
+    }
+   
+   return null;
 }
