@@ -60,7 +60,7 @@ export default class Game extends Component {
                     squares={current.squares} />
                 </div>
                     <div>{status}</div>
-                    <div>{moves}</div>
+                    <ul>{moves}</ul>
             </div>
         )
     }
