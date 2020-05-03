@@ -33,13 +33,34 @@ export default class Game extends Component {
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
-       
+        const winner= calculateWinner(current.squares);
+        const moves= history.map((step, move)=>{
+            const desc = move? 'Go to #' + move:'Choose a square to begin the game';
+            return (
+                <li key={move}>
+                    <button onClick={()=>{this.jumpTo(move)}}>
+                            {desc}
+                    </button>
+                </li>
+            )
+        });
+        let status;
+        if(winner){
+            status = 'Winner' + winner
+        } else{
+            status = 'Next Player is ' + (this.state.xIsNext?'X':'0');
+        }
+        
+      
+      
         return (
             <div className="game">
                 <div className="game-board">
                     <Board onClick={(i)=>this.handleClick(i)}
                     squares={current.squares} />
                 </div>
+                    <div>{status}</div>
+                    <div>{moves}</div>
             </div>
         )
     }
@@ -59,7 +80,7 @@ function calculateWinner(squares){
     for(let i=0;i<lines.length;i++){
         const [a,b,c] = lines[i];
         if(squares[a] && squares[a] === squares[b] && squares[b] === squares[c]){
-            return squares [a];
+         return squares [a];
         }
     }
    
