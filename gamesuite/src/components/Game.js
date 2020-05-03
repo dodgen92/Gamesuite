@@ -12,7 +12,17 @@ export default class Game extends Component {
             ]
         }
     }
-    handleClick(i){
+    jumpTo(step){
+        this.setState({
+            stepNumber: step,
+            xIsNext: (step%2)===0
+        })
+            
+    }
+
+
+
+    handleClick(i) {
         const history = this.state.history.slice(0,this.state.stepNumber+1);
         const current = history[history.length-1];
         const squares = current.squares.slice();
@@ -46,7 +56,7 @@ export default class Game extends Component {
         });
         let status;
         if(winner){
-            status = 'Winner' + winner
+            status = 'Winner is ' + winner
         } else{
             status = 'Next Player is ' + (this.state.xIsNext?'X':'0');
         }
